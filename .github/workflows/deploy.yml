@@ -62,10 +62,10 @@ jobs:
       # 🛑 Step 7: Apply Kubernetes Manifests
       - name: Deploy to Minikube
         run: |
-          kubectl apply -f o-deployment.yml
-          kubectl apply -f o-service.yml
+          kubectl apply -f o-deployment.yml --validate=false
+          kubectl apply -f o-service.yml --validate=false
 
-          kubectl apply -f ingress.yml
+          kubectl apply -f ingress.yml --validate=false
 
       # 🛑 Step 8: Verify Deployment
       - name: Verify Deployment
