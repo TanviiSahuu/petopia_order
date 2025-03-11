@@ -35,8 +35,8 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.TanviiSahuu }}  # 👉 Insert in GitHub Secrets
-          password: ${{ secrets.docker@2025 }}  # 👉 Insert in GitHub Secrets
+          username: ${{ secrets.DOCKER_USERNAME }}  # 👉 Insert in GitHub Secrets
+          password: ${{ secrets.DOCKER_PASSWORD }}  # 👉 Insert in GitHub Secrets
 
       # 🛑 Step 6: Build & Push Docker Images for Microservices
       - name: Build & Push Docker Images
