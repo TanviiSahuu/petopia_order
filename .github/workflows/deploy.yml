@@ -26,23 +26,23 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Install Minikube
-        run: |
-         curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-         sudo install minikube-linux-amd64 /usr/local/bin/minikube
+      # - name: Install Minikube
+      #   run: |
+      #    curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+      #    sudo install minikube-linux-amd64 /usr/local/bin/minikube
 
-      - name: Start Minikube
-        run: |
-         minikube start --driver=docker
-         minikube status
+      # - name: Start Minikube
+      #   run: |
+      #    minikube start --driver=docker
+      #    minikube status
 
 
-      # 🛑 Step 4: Load Kubeconfig (Required for Kubernetes Deployment)
-      - name: Setup Kubeconfig
-        run: |
-         mkdir -p $HOME/.kube
-         echo "${{ secrets.KUBECONFIG }}" | base64 --decode > $HOME/.kube/config
-        shell: bash
+      # # 🛑 Step 4: Load Kubeconfig (Required for Kubernetes Deployment)
+      # - name: Setup Kubeconfig
+      #   run: |
+      #    mkdir -p $HOME/.kube
+      #    echo "${{ secrets.KUBECONFIG }}" | base64 --decode > $HOME/.kube/config
+      #   shell: bash
 
 
       # 🛑 Step 5: Log in to Docker Hub (Optional: Needed only if pushing images)
@@ -60,15 +60,15 @@ jobs:
           docker push tanviisahuu/petopia_order:latest
 
       # 🛑 Step 7: Apply Kubernetes Manifests
-      - name: Deploy to Minikube
-        run: |
-          kubectl apply -f o-deployment.yml
-          kubectl apply -f o-service.yml
+      # - name: Deploy to Minikube
+      #   run: |
+      #     kubectl apply -f o-deployment.yml
+      #     kubectl apply -f o-service.yml
 
-          kubectl apply -f ingress.yml
+      #     kubectl apply -f ingress.yml
 
-      # 🛑 Step 8: Verify Deployment
-      - name: Verify Deployment
-        run: |
-          kubectl get pods -n default
-          kubectl get services -n default
+      # # 🛑 Step 8: Verify Deployment
+      # - name: Verify Deployment
+      #   run: |
+      #     kubectl get pods -n default
+      #     kubectl get services -n default
